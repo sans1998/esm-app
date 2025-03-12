@@ -1,5 +1,6 @@
 import createError from "http-errors";
 import express from "express";
+import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
@@ -10,10 +11,16 @@ import chatRouter from "./routes/chat.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { all } from "axios";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const corsOptions = {
+  origin: ["http://localhost:3000"],
+  method: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
 console.log("dirname: ", __dirname);
 console.log("filename: ", __filename);
@@ -28,6 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/chat", chatRouter);
