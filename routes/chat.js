@@ -17,7 +17,7 @@ router.post("/", async (req, res, next) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openai/gpt-3.5-turbo", // 根據需求選擇模型
+        model: "google/gemma-3-27b-it:free", // 根據需求選擇模型
         messages: [{ role: "user", content: message }],
       },
       {
