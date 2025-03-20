@@ -7,6 +7,7 @@ import logger from "morgan";
 
 import indexRouter from "./routes/index.js";
 import chatRouter from "./routes/chat.js";
+import imageRouter from "./routes/image.js";
 // import usersRouter from "./routes/users";
 
 import { fileURLToPath } from "url";
@@ -39,6 +40,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/chat", chatRouter);
+app.use("/image", imageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
