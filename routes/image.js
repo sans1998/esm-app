@@ -7,7 +7,13 @@ dotenv.config();
 const router = express.Router();
 
 router.post("/", async (req, res, next) => {
-  const { prompt } = req.body;
+  const {
+    prompt,
+    image_size = {
+      width: 768,
+      height: 1024,
+    },
+  } = req.body;
   if (!prompt) {
     return res.status(400).json({ error: "No message provided" });
   }
@@ -17,10 +23,7 @@ router.post("/", async (req, res, next) => {
       "https://api.girlclone.com/api/genimages/A00011",
       {
         prompt: prompt,
-        image_size: {
-          width: 768,
-          height: 1024,
-        },
+        image_size: image_size,
         webhook_url: "https://your-callback-url.com",
       },
       {
