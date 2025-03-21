@@ -9,10 +9,13 @@ const router = express.Router();
 router.post("/", async (req, res, next) => {
   const {
     prompt,
+    negative_prompt = null,
+    num_images = null,
     image_size = {
       width: 768,
       height: 1024,
     },
+    seed = null,
   } = req.body;
   if (!prompt) {
     return res.status(400).json({ error: "No message provided" });
@@ -24,6 +27,9 @@ router.post("/", async (req, res, next) => {
       {
         prompt: prompt,
         image_size: image_size,
+        num_images: num_images,
+        negative_prompt: negative_prompt,
+        seed: seed,
         webhook_url: "https://your-callback-url.com",
       },
       {
