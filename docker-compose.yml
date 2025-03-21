@@ -1,0 +1,13 @@
+# docker compose -f docker-compose.yml -p ai-image-backend up -d --build
+services:
+  sixparty-player-frontend:
+    container_name: ai-image-backend
+    restart: unless-stopped
+    build: # 指定相對路徑為目前 docker-compose 的執行路徑
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        - MODE=prod
+    image: ai-image-backend
+    ports:
+      - 8000:8000
