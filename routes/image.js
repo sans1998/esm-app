@@ -41,7 +41,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/task/:taskid", async (req, res, next) => {
+router.get("/:taskid", async (req, res, next) => {
   const { taskid } = req.params; // 取得 taskid
 
   if (!taskid) {

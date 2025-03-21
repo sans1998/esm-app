@@ -40,8 +40,8 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/chat", chatRouter);
-app.use("/image", imageRouter);
-app.use("/image/task/:taskid", imageRouter);
+app.use("/setimage", imageRouter);
+app.use("/getimage/:taskid", imageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
